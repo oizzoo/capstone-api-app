@@ -1,0 +1,24 @@
+{
+  "name": "api-project",
+  "version": "1.0.0",
+  "description": "A Node.js and Express project integrating a public API using Axios and EJS. Created as part of Angela Yu’s Full-Stack Developer Bootcamp.",
+  "homepage": "https://github.com/oizzoo/capstone-api-app#readme",
+  "bugs": {
+    "url": "https://github.com/oizzoo/capstone-api-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oizzoo/capstone-api-app.git"
+  },
+  "license": "ISC",
+  "author": "Jakub Stożek",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.11.0",
+    "express": "^5.1.0"
+  }
+}
