@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles.css">
-    <title>API capstone app</title>
+  <title>Job Search</title>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-    <H1>HALLOHALLOO</H1>
+  <h1>Welcome to Job Search App</h1>
+
+  <form action="/jobs" method="GET">
+    <input type="text" name="query" placeholder="Enter job title or location" value="<%= query ? query : '' %>" />
+    <button type="submit">Search</button>
+  </form>
+
+  <% if (error) { %>
+    <p style="color: red;"><%= error %></p>
+  <% } %>
+
+  <% if (jobs && jobs.length > 0) { %>
+    <h2>Results for: "<%= query %>"</h2>
+    <div>
+  <% if(currentPage > 1) { %>
+    <a href="/jobs?query=<%= query %>&page=<%= currentPage - 1 %>">Next page</a>
+  <% } %>
+  <a href="/jobs?query=<%= query %>&page=<%= currentPage + 1 %>">Previous page</a>
+</div>
+    <ul>
+      <% jobs.forEach(job => { %>
+        <li>
+          <a href="<%= job.job_google_link %>" target="_blank"><%= job.job_title %></a><br/>
+          Employer: <%= job.employer_name %><br/>
+          Location: <%= job.job_city %>, <%= job.job_country %><br/>
+          Posted: <%= job.job_posted_at_datetime_utc %><br/>
+          <p><%= job.job_description.length > 200 ? job.job_description.substring(0, 200) + "..." : job.job_description %></p>
+        </li>
+      <% }) %>
+    </ul>
+  <% } else if (jobs) { %>
+    <p>No results found.</p>
+  <% } %>
+  <div>
+  <% if(currentPage > 1) { %>
+    <a href="/jobs?query=<%= query %>&page=<%= currentPage - 1 %>">Poprzednia strona</a>
+  <% } %>
+  <a href="/jobs?query=<%= query %>&page=<%= currentPage + 1 %>">Następna strona</a>
+</div>
+
 </body>
 </html>
